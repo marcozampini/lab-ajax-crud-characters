@@ -1,25 +1,75 @@
 class APIHandler {
-  constructor (baseUrl) {
-    this.BASE_URL = baseUrl;
+  constructor(baseUrl) {
+    this.BASE_URL = baseUrl
   }
 
-  getFullList () {
-
+  async getFullList() {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: '/characters',
+        baseURL: this.BASE_URL,
+        params: {},
+      })
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  getOneRegister () {
-
+  async getOneRegister(characterId) {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `/characters/${characterId}`,
+        baseURL: this.BASE_URL,
+        params: {},
+      })
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  createOneRegister () {
-
+  async createOneRegister(data) {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `/characters/`,
+        baseURL: this.BASE_URL,
+        data: data,
+      })
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  updateOneRegister () {
-
+  async updateOneRegister(data) {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `/characters/${data.id}`,
+        baseURL: this.BASE_URL,
+        data: data,
+      })
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  deleteOneRegister () {
-
+  async deleteOneRegister(characterId) {
+    try {
+      const response = await axios({
+        method: 'delete',
+        url: `/characters/${characterId}`,
+        baseURL: this.BASE_URL,
+        params: {},
+      })
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
